@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="arrayTest">
+        <item>减脂跑步</item>
+        <item>室外跑步</item>
+        <item>室内跑步</item>
+        <item>自由训练</item>
+        <item>历史记录</item>
+    </string-array>
+</resources>

@@ -1,8 +1,13 @@
 package com.example.jinghuang.hellobutterknife;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.BinderThread;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,14 +17,133 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
+
+import butterknife.BindArray;
+import butterknife.BindBitmap;
+import butterknife.BindBool;
+import butterknife.BindColor;
+import butterknife.BindDimen;
+import butterknife.BindDrawable;
+import butterknife.BindFloat;
+import butterknife.BindInt;
+import butterknife.BindString;
+import butterknife.BindView;
+import butterknife.BindViews;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnLongClick;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private final String TAG = MainActivity.this.getClass().getSimpleName();
+
+    // View绑定
+    @BindView(R.id.tvWorld)
+    TextView tvWorld;
+    @BindView(R.id.tvChina)
+    TextView tvChina;
+    @BindView(R.id.tvShenZhen)
+    TextView tvShenZhen;
+
+    // 资源绑定
+    @BindArray(R.array.arrayTest)
+    String[] arrays;
+
+    @BindColor(R.color.colorTest)
+    int colorValue;
+
+    @BindString(R.string.stringTest)
+    String stringValue;
+
+    @BindBitmap(R.mipmap.avator_one)
+    Bitmap avatorOne;
+
+    @BindDrawable(R.mipmap.avator_two)
+    Drawable avatorTwo;
+
+    @BindBool(R.bool.boolTest)
+    boolean bool;
+
+    @BindDimen(R.dimen.dimenTest)
+    int dimen;  // int (for pixel size) or float (for exact value) field
+
+    @BindInt(R.integer.intTest)
+    int intValue;
+
+    // 可绑定 float 类型的 dimen 资源 - 待验证
+//    @BindFloat(R.dimen.floatTest)
+//    float floatValue;
+
+    @BindViews({R.id.tvWorld, R.id.tvChina, R.id.tvShenZhen})
+    List<TextView> tvList;
+
+    @BindView(R.id.ivBitmap)
+    ImageView ivBitmap;
+
+    @BindView(R.id.ivDrawable)
+    ImageView ivDrawable;
+
+    // onClick onLongClick会完成下面两步的绑定操作，所以不需要也是可以的
+//    @BindView(R.id.btnLogin)
+//    Button btnLogin;
+//
+//    @BindView(R.id.btnCancel)
+//    Button binCancel;
+
+    @OnClick({R.id.ivBitmap, R.id.ivDrawable})
+    public void sayHiToast(View v) {
+        switch (v.getId()) {
+            case R.id.ivBitmap:
+                Toast.makeText(getApplicationContext(), "ivBitmap click", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.ivDrawable:
+                Toast.makeText(getApplicationContext(), "ivDrawable click", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    @OnClick(R.id.btnLogin)
+    public void doLogin() {
+        Toast.makeText(getApplicationContext(), "doLogin click", Toast.LENGTH_SHORT).show();
+    }
+
+    @OnLongClick(R.id.btnLogin)
+    public boolean doLogin(Button button) {
+        button.setText("Login update");
+        return true;
+    }
+
+    @OnClick(R.id.btnCancel)
+    public void doCancel(Button button) {
+        Toast.makeText(getApplicationContext(), "doCancel click", Toast.LENGTH_SHORT).show();
+        button.setText("Error");
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+        Log.d(TAG, "onCreate called, bool=" + bool + ", dimen=" + dimen + ", intValue="
+                + intValue + ", stringValue=" + stringValue + ", arrays=" + arrays.toString());
+
+        tvShenZhen.setText(stringValue);
+        tvShenZhen.setTextColor(colorValue);
+
+        tvList.get(0).setText(arrays[0]);
+
+        ivBitmap.setBackground(avatorTwo);
+        ivDrawable.setBackground(new BitmapDrawable(avatorOne));
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

@@ -14,7 +14,60 @@
     tools:showIn="@layout/app_bar_main">
 
     <TextView
+        android:id="@+id/tvWorld"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
+
+    <TextView
+        android:id="@+id/tvChina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello China!"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/tvWorld" />
+
+    <TextView
+        android:id="@+id/tvShenZhen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello ShenZhen!"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/tvChina" />
+
+    <ImageView
+        android:id="@+id/ivDrawable"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/tvShenZhen" />
+
+    <ImageView
+        android:id="@+id/ivBitmap"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/ivDrawable"
+        android:layout_below="@+id/tvShenZhen" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:text="login"
+        android:layout_below="@+id/ivBitmap" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:text="cancel"
+        android:layout_toRightOf="@id/btnLogin"
+        android:layout_below="@+id/ivBitmap" />
+
+
 </RelativeLayout>
