@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/id_fragment_title"
+        android:name="com.example.jinghuang.hellobutterknife.fragment.TitleFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp" />
+
+    <FrameLayout
+        android:id="@+id/id_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/id_fragment_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnWx"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="微信"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnFri"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="朋友"
+            android:layout_weight="1" />
+    </LinearLayout>
+</RelativeLayout>

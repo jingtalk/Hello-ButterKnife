@@ -1,11 +1,10 @@
 package com.example.jinghuang.hellobutterknife;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.BinderThread;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
@@ -30,7 +29,6 @@ import butterknife.BindBool;
 import butterknife.BindColor;
 import butterknife.BindDimen;
 import butterknife.BindDrawable;
-import butterknife.BindFloat;
 import butterknife.BindInt;
 import butterknife.BindString;
 import butterknife.BindView;
@@ -127,6 +125,24 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+//    @BindView(R.id.fab)
+//    FloatingActionButton fab;
+
+    @OnClick(R.id.fab)
+    public void make(View view) {
+        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
+
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,25 +160,25 @@ public class MainActivity extends AppCompatActivity
         ivBitmap.setBackground(avatorTwo);
         ivDrawable.setBackground(new BitmapDrawable(avatorOne));
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -203,12 +219,16 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
+        Intent i = null;
+        if (id == R.id.nav_fragmentStatic) {
             // Handle the camera action
+            i = new Intent(this, FragmentStaticActivity.class);
+            startActivity(i);
         } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_fragmentDynamic) {
+            i = new Intent(this, FragmentDynamicActivity.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_manage) {
 
