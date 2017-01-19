@@ -6,5 +6,24 @@
         <item>室内跑步</item>
         <item>自由训练</item>
         <item>历史记录</item>
+        <item>减脂跑步</item>
+        <item>室外跑步</item>
+        <item>室内跑步</item>
+        <item>自由训练</item>
+        <item>历史记录</item>
     </string-array>
+
+    <string-array name="arrayInfo">
+        <item>Run1</item>
+        <item>Run2</item>
+        <item>Run3</item>
+        <item>Run4</item>
+        <item>Run5</item>
+        <item>Run1</item>
+        <item>Run2</item>
+        <item>Run3</item>
+        <item>Run4</item>
+        <item>Run5</item>
+    </string-array>
+
 </resources>

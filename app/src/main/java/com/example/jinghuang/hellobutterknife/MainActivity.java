@@ -230,7 +230,9 @@ public class MainActivity extends AppCompatActivity
             i = new Intent(this, FragmentDynamicActivity.class);
             startActivity(i);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_list) {
+            i = new Intent(this, MyListActivity.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_share) {
 

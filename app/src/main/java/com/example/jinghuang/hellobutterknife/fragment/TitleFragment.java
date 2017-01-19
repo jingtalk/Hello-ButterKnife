@@ -43,6 +43,11 @@ public class TitleFragment extends Fragment{
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
     @OnClick(R.id.id_title_left_btn)
     public void show() {
         Toast.makeText(getActivity(), "i am a imagebutton in TitleFragment!", Toast.LENGTH_LONG).show();
