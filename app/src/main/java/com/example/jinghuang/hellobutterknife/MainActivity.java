@@ -34,11 +34,8 @@ import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
-import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
-import butterknife.OnItemClick;
 import butterknife.OnLongClick;
-import butterknife.OnTextChanged;
 import butterknife.Optional;
 
 public class MainActivity extends AppCompatActivity
@@ -228,13 +225,16 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
             i = new Intent(this, FragmentStaticActivity.class);
             startActivity(i);
-        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_listView) {
+            i = new Intent(this, MyListViewActivity.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_fragmentDynamic) {
             i = new Intent(this, FragmentDynamicActivity.class);
             startActivity(i);
 
-        } else if (id == R.id.nav_list) {
+        } else if (id == R.id.nav_listActivity) {
             i = new Intent(this, MyListActivity.class);
             startActivity(i);
 

@@ -7,17 +7,17 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="fragmentStatic" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
             android:id="@+id/nav_fragmentDynamic"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="fragmentDynamic" />
         <item
-            android:id="@+id/nav_list"
+            android:id="@+id/nav_listActivity"
             android:icon="@drawable/ic_menu_manage"
             android:title="listActivity" />
+        <item
+            android:id="@+id/nav_listView"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="listView" />
     </group>
 
     <item android:title="Communicate">

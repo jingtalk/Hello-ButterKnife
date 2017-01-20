@@ -1,7 +1,7 @@
 package com.example.jinghuang.hellobutterknife;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -23,24 +23,31 @@ import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemClick;
+import butterknife.OnItemLongClick;
+import butterknife.OnItemSelected;
 
 /**
- * Created by hakimhuang on 2017/1/19.
+ * Created by hakimhuang on 2017/1/20.
  */
 
-public class MyListActivity extends ListActivity {
+public class MyListViewActivity extends Activity {
 
+    @BindArray(R.array.arrayTest)
     String[] arraysName;
+    @BindArray(R.array.arrayInfo)
     String[] arraysInfo;
+
+    @BindView(R.id.listview)
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.listview_main);
+        ButterKnife.bind(this);
 
-        arraysName = getResources().getStringArray(R.array.arrayTest);
-        arraysInfo = getResources().getStringArray(R.array.arrayInfo);
-
-        setListAdapter(new MyBaseAdapter(this, getData()));
+        listView.setAdapter(new MyAdapter(this, getData()));
     }
 
     private List<Map<String, Object>> getData() {
@@ -51,20 +58,36 @@ public class MyListActivity extends ListActivity {
             map = new HashMap<String, Object>();
             map.put("title", arraysName[i]);
             map.put("info", arraysInfo[i]);
-            map.put("img", R.mipmap.avator_one);
+            map.put("img", R.mipmap.ic_launcher);
             list.add(map);
         }
 
         return list;
     }
 
+    @OnItemClick(R.id.listview)
+    public void itemClick(int position) {
+        showItemClick(position, "click");
+    }
 
-    public class MyBaseAdapter extends BaseAdapter {
+    @OnItemLongClick(R.id.listview)
+    public boolean itemLongClick(int position) {
+        showItemClick(position, "longclick");
+        return true;
+    }
+
+    // 触发场景
+    @OnItemSelected(R.id.listview)
+    public void itemSelected(int position) {
+        showItemClick(position, "itemSelected");
+    }
+
+    class MyAdapter extends BaseAdapter {
 
         private List<Map<String, Object>> mData;
         private LayoutInflater mInflater;
 
-        public MyBaseAdapter(Context context, List<Map<String, Object>> data) {
+        public MyAdapter(Context context, List<Map<String, Object>> data) {
             this.mInflater = LayoutInflater.from(context);
             this.mData = data;
         }
@@ -83,46 +106,16 @@ public class MyListActivity extends ListActivity {
         public long getItemId(int position) {
             return position;
         }
-/*
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder = null;
             if (convertView == null) {
-                holder = new ViewHolder();
                 convertView = mInflater.inflate(R.layout.list_item, null);
-                holder.img = (ImageView) convertView.findViewById(R.id.img);
-                holder.title = (TextView) convertView.findViewById(R.id.title);
-                holder.info = (TextView) convertView.findViewById(R.id.info);
-                holder.viewBtn = (Button) convertView.findViewById(R.id.view_btn);
+                holder = new ViewHolder(convertView);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
-            }
-
-            holder.img.setBackgroundResource((Integer) mData.get(position).get("img"));
-            holder.title.setText((String) mData.get(position).get("title"));
-            holder.info.setText((String) mData.get(position).get("info"));
-            holder.viewBtn.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    showInfo();
-                }
-            });
-            return convertView;
-        }
-*/
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolderBK holder = null;
-            if (convertView == null) {
-                convertView = mInflater.inflate(R.layout.list_item, null);
-                holder = new ViewHolderBK(convertView);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolderBK) convertView.getTag();
             }
             holder.img.setBackgroundResource((Integer) mData.get(position).get("img"));
             holder.title.setText((String) mData.get(position).get("title"));
@@ -132,13 +125,6 @@ public class MyListActivity extends ListActivity {
     }
 
     public final class ViewHolder {
-        public ImageView img;
-        public TextView title;
-        public TextView info;
-        public Button viewBtn;
-    }
-
-    public final class ViewHolderBK {
         @BindView(R.id.img)
         ImageView img;
         @BindView(R.id.title)
@@ -148,20 +134,39 @@ public class MyListActivity extends ListActivity {
         @BindView(R.id.view_btn)
         Button viewBtn;
 
-        public ViewHolderBK(View view) {
+        public ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
 
         @OnClick(R.id.view_btn)
-        public void show() {
-            showInfo();
+        public void showButton() {
+            showItemInfoClick("Button");
+        }
+
+        @OnClick(R.id.img)
+        public void showImg() {
+            showItemInfoClick("Img");
         }
     }
 
-    public void showInfo() {
+    public void showItemInfoClick(String info) {
+        new AlertDialog.Builder(this)
+                .setTitle("我的Item内容")
+                .setMessage("这是Item中的" + info + "被点击!")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .show();
+
+    }
+
+
+    public void showItemClick(int i, String info) {
         new AlertDialog.Builder(this)
                 .setTitle("我的listview")
-                .setMessage("这里只是一个介绍而已...")
+                .setMessage("这里Item i=" + i + "被触发! 类型：" + info)
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
