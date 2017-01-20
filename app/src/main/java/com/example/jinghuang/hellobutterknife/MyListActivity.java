@@ -82,34 +82,36 @@ public class MyListActivity extends ListActivity {
         public long getItemId(int position) {
             return position;
         }
+/*
 
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//            ViewHolder holder = null;
-//            if (convertView == null) {
-//                holder = new ViewHolder();
-//                convertView = mInflater.inflate(R.layout.list_item, null);
-//                holder.img = (ImageView) convertView.findViewById(R.id.img);
-//                holder.title = (TextView) convertView.findViewById(R.id.title);
-//                holder.info = (TextView) convertView.findViewById(R.id.info);
-//                holder.viewBtn = (Button) convertView.findViewById(R.id.view_btn);
-//                convertView.setTag(holder);
-//            } else {
-//                holder = (ViewHolder) convertView.getTag();
-//            }
-//
-//            holder.img.setBackgroundResource((Integer) mData.get(position).get("img"));
-//            holder.title.setText((String) mData.get(position).get("title"));
-//            holder.info.setText((String) mData.get(position).get("info"));
-//            holder.viewBtn.setOnClickListener(new View.OnClickListener() {
-//
-//                @Override
-//                public void onClick(View v) {
-//                    showInfo();
-//                }
-//            });
-//            return convertView;
-//        }
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder = null;
+            if (convertView == null) {
+                holder = new ViewHolder();
+                convertView = mInflater.inflate(R.layout.list_item, null);
+                holder.img = (ImageView) convertView.findViewById(R.id.img);
+                holder.title = (TextView) convertView.findViewById(R.id.title);
+                holder.info = (TextView) convertView.findViewById(R.id.info);
+                holder.viewBtn = (Button) convertView.findViewById(R.id.view_btn);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            holder.img.setBackgroundResource((Integer) mData.get(position).get("img"));
+            holder.title.setText((String) mData.get(position).get("title"));
+            holder.info.setText((String) mData.get(position).get("info"));
+            holder.viewBtn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    showInfo();
+                }
+            });
+            return convertView;
+        }
+*/
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {

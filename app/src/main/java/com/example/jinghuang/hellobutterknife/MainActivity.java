@@ -34,8 +34,12 @@ import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.OnItemClick;
 import butterknife.OnLongClick;
+import butterknife.OnTextChanged;
+import butterknife.Optional;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -124,18 +128,18 @@ public class MainActivity extends AppCompatActivity
         button.setText("Error");
     }
 
-
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
 //    @BindView(R.id.fab)
 //    FloatingActionButton fab;
 
-    @OnClick(R.id.fab)
+    @Optional @OnClick(R.id.fab)
     public void make(View view) {
         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
     }
+
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
@@ -244,4 +248,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

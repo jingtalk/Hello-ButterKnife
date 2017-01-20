@@ -14,6 +14,7 @@ import com.example.jinghuang.hellobutterknife.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Created by hakimhuang on 2017/1/19.
@@ -24,28 +25,33 @@ public class TitleFragment extends Fragment{
 
     @BindView(R.id.id_title_left_btn)
     ImageButton mLeftMenu;
+    private Unbinder unbinder;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_title, container, false);
-//        mLeftMenu = (ImageButton) view.findViewById(R.id.id_title_left_btn);
-//        mLeftMenu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getActivity(), "i am a imagebutton in TitleFragment!", Toast.LENGTH_LONG).show();
-//            }
-//        });
+/*
+
+        mLeftMenu = (ImageButton) view.findViewById(R.id.id_title_left_btn);
+        mLeftMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "i am a imagebutton in TitleFragment!", Toast.LENGTH_LONG).show();
+            }
+        });
+*/
 
         // Fragment中的绑定操作
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        unbinder.unbind();
     }
 
     @OnClick(R.id.id_title_left_btn)
